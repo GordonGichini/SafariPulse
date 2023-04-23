@@ -1,14 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
+import React from "react";
 import { StyleSheet, Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+
+import Travel from './navigation/Travel';  
+
+const Stack = createNativeStackNavigator();
+
+class App extends React.Component {
+  render() {
+    return ( 
+      <NavigationContainer>
+        <Stack.Navigator> 
+          <Stack.Screen
+           name="Home"
+           component={HomeScreen}
+           options={{title: 'Welcome'}}
+           />
+            <Travel /> 
+          <Stack.Screen name="Profile" component={ProfileScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+} 
+
+export default createAppContainer(App);
 
 const styles = StyleSheet.create({
   container: {
@@ -17,4 +35,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
